@@ -25,13 +25,14 @@ func main() {
 		colly.AllowedDomains("en.wikipedia.org"),
 	)
 
-	// find and print all links
+	// find and print all links, write to .txt
+
 	c.OnHTML(".mw-parser-output", func(e *colly.HTMLElement) {
 		links := e.ChildAttrs("a", "href")
-
 		for _, str := range links {
 			fmt.Printf("\n%s\n", str)
 		}
+
 	})
 	c.Visit("https://en.wikipedia.org/wiki/Web_scraping")
 
